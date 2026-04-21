@@ -13,6 +13,10 @@ class AppState extends ChangeNotifier {
   bool loading = false;
   String statusMessage = 'Ready';
   String? authToken;
+  bool isAuthenticated = false;
+  bool otpRequested = false;
+  String pendingEmail = '';
+  String pendingPassword = '';
 
   final List<Product> products = <Product>[];
   final List<CartItem> cart = <CartItem>[];
@@ -63,6 +67,88 @@ class AppState extends ChangeNotifier {
     }
 
     loading = false;
+    notifyListeners();
+  }
+
+  Future<void> requestLoginOtp(String email, String password) async {
+    loading = true;
+    notifyListeners();
+
+    pendingEmail = email;
+    pendingPassword = password;
+
+    final result = await _api.login(email, password);
+    otpRequested = true;
+    statusMessage = result.scaffolded
+        ? 'OTP requested. Backend is scaffolded, use any 6 digit OTP for preview.'
+        : 'OTP requested: ${result.message}';
+
+    loading = false;
+    notifyListeners();
+  }
+
+  Future<void> verifyOtpAndLogin(String otp) async {
+    if (pendingEmail.isEmpty || pendingPassword.isEmpty) {
+      statusMessage = 'Enter email and password first.';
+      notifyListeners();
+      return;
+    }
+
+    loading = true;
+    notifyListeners();
+
+    final result = await _api.loginWithOtp(
+      email: pendingEmail,
+      password: pendingPassword,
+      otp: otp,
+    );
+
+    if (result.ok && result.data is Map<String, dynamic>) {
+      authToken = '${(result.data as Map<String, dynamic>)['token'] ?? ''}';
+      isAuthenticated = true;
+      otpRequested = false;
+      statusMessage = 'Login successful';
+    } else {
+      // Keep preview flow usable when backend endpoint is scaffolded.
+      if (result.scaffolded && otp.length >= 4) {
+        isAuthenticated = true;
+        otpRequested = false;
+        statusMessage = 'Login preview successful (scaffold backend).';
+      } else {
+        statusMessage = 'OTP verification failed: ${result.message}';
+      }
+    }
+
+    loading = false;
+    notifyListeners();
+  }
+
+  Future<void> loginUsingGoogle() async {
+    loading = true;
+    notifyListeners();
+
+    final result = await _api.loginWithGoogle(idToken: 'mobile-google-token');
+    if (result.ok) {
+      isAuthenticated = true;
+      statusMessage = 'Google login successful';
+    } else if (result.scaffolded) {
+      isAuthenticated = true;
+      statusMessage = 'Google login preview enabled (backend scaffolded).';
+    } else {
+      statusMessage = 'Google login failed: ${result.message}';
+    }
+
+    loading = false;
+    notifyListeners();
+  }
+
+  void signOut() {
+    authToken = null;
+    isAuthenticated = false;
+    otpRequested = false;
+    pendingEmail = '';
+    pendingPassword = '';
+    statusMessage = 'Signed out';
     notifyListeners();
   }
 

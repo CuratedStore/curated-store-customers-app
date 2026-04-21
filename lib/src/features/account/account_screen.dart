@@ -79,6 +79,10 @@ class _AccountScreenState extends State<AccountScreen> {
                   onPressed: state.loading ? null : state.bootstrap,
                   child: const Text('Refresh API Status'),
                 ),
+                OutlinedButton(
+                  onPressed: state.loading ? null : state.signOut,
+                  child: const Text('Sign Out'),
+                ),
               ],
             ),
             const SizedBox(height: 14),

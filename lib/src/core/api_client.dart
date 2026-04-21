@@ -35,6 +35,23 @@ class ApiClient {
         body: {'email': email, 'password': password},
       );
 
+  Future<ApiResult> loginWithOtp({
+    required String email,
+    required String password,
+    required String otp,
+  }) =>
+      _request(
+        'POST',
+        AppConfig.authLoginPath,
+        body: {'email': email, 'password': password, 'otp': otp},
+      );
+
+  Future<ApiResult> loginWithGoogle({required String idToken}) => _request(
+        'POST',
+        AppConfig.authLoginPath,
+        body: {'provider': 'google', 'id_token': idToken},
+      );
+
   Future<ApiResult> register(String name, String email, String password) => _request(
         'POST',
         AppConfig.authRegisterPath,

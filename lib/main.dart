@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'src/core/app_config.dart';
 import 'src/core/app_state.dart';
 import 'src/core/app_theme.dart';
+import 'src/features/auth/auth_screen.dart';
+import 'src/features/auth/splash_screen.dart';
 import 'src/features/account/account_screen.dart';
 import 'src/features/cart/cart_screen.dart';
 import 'src/features/catalog/catalog_screen.dart';
@@ -27,7 +29,34 @@ class CuratedStoreCustomersApp extends StatelessWidget {
       title: AppConfig.appName,
       theme: AppTheme.light(),
       debugShowCheckedModeBanner: false,
-      home: const _AppShell(),
+      home: const _RootGate(),
+    );
+  }
+}
+
+class _RootGate extends StatefulWidget {
+  const _RootGate();
+
+  @override
+  State<_RootGate> createState() => _RootGateState();
+}
+
+class _RootGateState extends State<_RootGate> {
+  bool _splashDone = false;
+
+  @override
+  Widget build(BuildContext context) {
+    if (!_splashDone) {
+      return SplashScreen(onFinished: () => setState(() => _splashDone = true));
+    }
+
+    return Consumer<AppState>(
+      builder: (context, state, _) {
+        if (!state.isAuthenticated) {
+          return const AuthScreen();
+        }
+        return const _AppShell();
+      },
     );
   }
 }

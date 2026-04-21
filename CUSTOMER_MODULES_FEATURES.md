@@ -1,95 +1,66 @@
-# Curated Store Customers App: Required Modules and Features
+# Curated Store Customers App: Progress Tracker
 
-This list is derived from the current web application implementation in CuratedStore (routes + controllers + customer views).
+This file now tracks what is completed versus pending in the Flutter customers app.
 
-## 1. Authentication and Account Access
-- Login with email + OTP flow
-- OTP verification with expiry and attempt limits
-- Register (email + password)
-- Email verification with code
-- Resend verification code
-- Forgot password flow (email)
-- Reset password via token link
-- Logout
-- Auth session refresh endpoint behavior
+## Confirmed Scope Update
+- Authentication should include Splash, Login, and Sign Up only.
+- Forgot password and reset password are not required.
+- Login must support password + OTP and include a Login with Google button.
 
-## 2. Storefront and Product Discovery
-- Home screen modules:
-  - Featured products
-  - New arrivals
-  - Sale products
-  - Best sellers
-  - Category strips/sections
-- Shop catalog listing
-- Shop search (name/short description/description)
-- Shop category filter
-- Shop sort:
-  - Newest
-  - Price low to high
-  - Price high to low
-- Product detail page:
-  - Name, description, short description
-  - Price
-  - Tags
-  - Variants
-  - Image
+## Completed
 
-## 3. Customer Profile and Preferences
-- Account profile view
-- Update profile (name/display name, email, phone)
-- Address book:
-  - List addresses
-  - Add address
-  - Delete address
-  - Default address handling
-- Preferences:
-  - Currency (INR/USD/EUR)
-  - Language (en/hi)
-  - Email notifications toggle
-  - SMS notifications toggle
+### 1. Core App and Theme
+- Brand-consistent theme applied using Curated Store colors.
+- Navigation shell created for Shop, Cart, Orders, and Account.
+- App wired to remote API URL only.
 
-## 4. Cart and Checkout
-- Cart listing with line totals
-- Add to cart
-- Remove from cart
-- Quantity + stock guard (cannot exceed stock)
-- Checkout screen with cart summary
-- Create order from cart
-- Payment method options:
-  - COD
-  - UPI
-  - Card
+### 2. Assets
+- Web image assets copied into Flutter assets.
+- Brand and product SVG assets configured and used in UI.
 
-## 5. Orders and Post-Order
-- Orders list
-- Order detail:
-  - Items
-  - Shipping address
-  - Total
-  - Status
-  - Timeline/status events
-- Download invoice
-- Order confirmation screen
-- Order action requests:
-  - Cancel request
-  - Return request
-  - Request reason capture
-  - Pending request conflict guard
+### 3. Authentication UX (Current)
+- Splash screen implemented.
+- Login screen implemented.
+- Sign up screen implemented.
+- Login with password + OTP flow UI implemented.
+- Login with Google button added to login screen.
+- Sign out action implemented.
 
-## 6. Wishlist
-- Wishlist listing
-- Add to wishlist
-- Remove from wishlist
+### 4. API Wiring (Current)
+- Health endpoint call integrated.
+- Register and login endpoints integrated.
+- Products, cart, and orders endpoints integrated in app state.
+- Graceful fallback messaging added where backend endpoints are scaffolded.
 
-## 7. API-Level Endpoints Present for Customer Domain
-- Auth: register/login/logout
-- Products: list/detail
-- Categories: list
-- Cart: add/list/remove
-- Orders: create/list/detail
-- Account: profile, update profile, addresses
+## Pending
 
-## Notes for Flutter Implementation
-- Build modules above as first-class features (no placeholders).
-- Keep status-driven logic for order requests and stock validation consistent with web behavior.
-- Ensure OTP and verification UX supports retry, expiry, and error states.
+### 1. Backend Completion for Auth
+- Dedicated OTP request/verify behavior must be finalized server-side.
+- Google OAuth token verification endpoint must be finalized server-side.
+
+### 2. Authentication Hardening
+- OTP expiry timer and retry/attempt-limit UX.
+- Proper secure token persistence and refresh behavior.
+- Auth error mapping per backend validation codes.
+
+### 3. Storefront and Commerce Depth
+- Advanced home modules (featured/new/sale/best sellers) from real API data.
+- Search, category filter, and sort behavior in catalog.
+- Full product detail (variants/tags/media).
+
+### 4. Account and Profile
+- Profile read/update screens with real API payload mapping.
+- Address book full CRUD and default address handling.
+- Preferences module (currency/language/notification toggles).
+
+### 5. Orders and Post-Order
+- Full order detail and timeline events.
+- Cancel/return request flows with reason capture and conflict guards.
+- Invoice download flow.
+
+### 6. Wishlist
+- Wishlist list/add/remove implementation.
+
+## API Notes
+- Current customers API has multiple scaffolded endpoints returning placeholder responses.
+- Mobile app is intentionally wired to remote URLs and shows status when scaffold responses are returned.
