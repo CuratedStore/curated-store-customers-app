@@ -9,6 +9,7 @@ import 'src/features/auth/splash_screen.dart';
 import 'src/features/account/account_screen.dart';
 import 'src/features/cart/cart_screen.dart';
 import 'src/features/catalog/catalog_screen.dart';
+import 'src/features/catalog/wishlist_screen.dart';
 import 'src/features/orders/orders_screen.dart';
 
 void main() {
@@ -73,6 +74,7 @@ class _AppShellState extends State<_AppShell> {
 
   static const List<Widget> _screens = <Widget>[
     CatalogScreen(),
+    WishlistScreen(),
     CartScreen(),
     OrdersScreen(),
     AccountScreen(),
@@ -80,6 +82,7 @@ class _AppShellState extends State<_AppShell> {
 
   static const List<String> _titles = <String>[
     'Discover',
+    'Wishlist',
     'Cart',
     'Orders',
     'Account',
@@ -98,6 +101,11 @@ class _AppShellState extends State<_AppShell> {
             icon: Icon(Icons.storefront_outlined),
             selectedIcon: Icon(Icons.storefront),
             label: 'Shop',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.favorite_border),
+            selectedIcon: Icon(Icons.favorite),
+            label: 'Wishlist',
           ),
           NavigationDestination(
             icon: Icon(Icons.shopping_cart_outlined),
