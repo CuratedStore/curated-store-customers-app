@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" role="img" aria-labelledby="t d">
+  <title id="t">Ceramic Vase Mockup</title>
+  <desc id="d">Dummy product image for storefront preview.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f8efe6"/>
+      <stop offset="100%" stop-color="#f1dbc9"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#bg)"/>
+  <ellipse cx="300" cy="690" rx="130" ry="24" fill="#c79f84" opacity="0.35"/>
+  <path d="M245 180h110c-18 35-22 65-22 102v220c0 45-30 82-70 82s-70-37-70-82V282c0-37-4-67-18-102h70z" fill="#b86f4f"/>
+  <path d="M245 180h110c-4 8-8 16-10 24H255c-2-8-6-16-10-24z" fill="#8c4f33"/>
+  <text x="300" y="92" text-anchor="middle" font-family="Georgia, serif" font-size="34" fill="#6b3f2d">CURATED</text>
+  <text x="300" y="128" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#6b3f2d">VASE</text>
+</svg>

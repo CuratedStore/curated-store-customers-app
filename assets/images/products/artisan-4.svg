@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" role="img" aria-labelledby="t d">
+  <title id="t">Wood Lamp Mockup</title>
+  <desc id="d">Dummy product image for storefront preview.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#fff3e6"/>
+      <stop offset="100%" stop-color="#ffe2c2"/>
+    </linearGradient>
+    <radialGradient id="light" cx="50%" cy="35%" r="45%">
+      <stop offset="0%" stop-color="#fff9d4"/>
+      <stop offset="100%" stop-color="#f3c67a"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#bg)"/>
+  <ellipse cx="300" cy="690" rx="140" ry="24" fill="#a06d3f" opacity="0.25"/>
+  <path d="M230 250h140l-28 120h-84z" fill="url(#light)"/>
+  <rect x="280" y="370" width="40" height="210" rx="10" fill="#8e5f34"/>
+  <rect x="235" y="560" width="130" height="24" rx="12" fill="#7a4f2c"/>
+  <circle cx="300" cy="302" r="18" fill="#f0b86a" opacity="0.75"/>
+  <text x="300" y="92" text-anchor="middle" font-family="Georgia, serif" font-size="34" fill="#724825">CURATED</text>
+  <text x="300" y="128" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#724825">LAMP</text>
+</svg>

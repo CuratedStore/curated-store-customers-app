@@ -1,66 +1,91 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'src/core/app_config.dart';
+import 'src/core/app_state.dart';
+import 'src/core/app_theme.dart';
+import 'src/features/account/account_screen.dart';
+import 'src/features/cart/cart_screen.dart';
+import 'src/features/catalog/catalog_screen.dart';
+import 'src/features/orders/orders_screen.dart';
 
 void main() {
-  runApp(const CuratedStoreCustomersApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => AppState()..bootstrap(),
+      child: const CuratedStoreCustomersApp(),
+    ),
+  );
 }
 
 class CuratedStoreCustomersApp extends StatelessWidget {
-  const CuratedStoreCustomersApp({Key? key}) : super(key: key);
+  const CuratedStoreCustomersApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Curated Store - Customers',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        useMaterial3: true,
-      ),
-      home: const HomePage(),
+      title: AppConfig.appName,
+      theme: AppTheme.light(),
+      debugShowCheckedModeBanner: false,
+      home: const _AppShell(),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class _AppShell extends StatefulWidget {
+  const _AppShell();
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<_AppShell> createState() => _AppShellState();
 }
 
-class _HomePageState extends State<HomePage> {
-  int _counter = 0;
+class _AppShellState extends State<_AppShell> {
+  int _currentIndex = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  static const List<Widget> _screens = <Widget>[
+    CatalogScreen(),
+    CartScreen(),
+    OrdersScreen(),
+    AccountScreen(),
+  ];
+
+  static const List<String> _titles = <String>[
+    'Discover',
+    'Cart',
+    'Orders',
+    'Account',
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Curated Store - Customers'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Customers App Ready',
-              style: TextStyle(fontSize: 20),
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      appBar: AppBar(title: Text(_titles[_currentIndex])),
+      body: _screens[_currentIndex],
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: _currentIndex,
+        onDestinationSelected: (index) => setState(() => _currentIndex = index),
+        destinations: const <NavigationDestination>[
+          NavigationDestination(
+            icon: Icon(Icons.storefront_outlined),
+            selectedIcon: Icon(Icons.storefront),
+            label: 'Shop',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.shopping_cart_outlined),
+            selectedIcon: Icon(Icons.shopping_cart),
+            label: 'Cart',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.receipt_long_outlined),
+            selectedIcon: Icon(Icons.receipt_long),
+            label: 'Orders',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.person_outline),
+            selectedIcon: Icon(Icons.person),
+            label: 'Account',
+          ),
+        ],
       ),
     );
   }

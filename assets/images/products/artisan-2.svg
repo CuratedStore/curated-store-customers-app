@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" role="img" aria-labelledby="t d">
+  <title id="t">Woven Basket Mockup</title>
+  <desc id="d">Dummy product image for storefront preview.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#e9f2ea"/>
+      <stop offset="100%" stop-color="#d7e6d8"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#bg)"/>
+  <ellipse cx="300" cy="685" rx="170" ry="30" fill="#7a8f69" opacity="0.25"/>
+  <ellipse cx="300" cy="530" rx="160" ry="90" fill="#a57f54"/>
+  <ellipse cx="300" cy="520" rx="120" ry="58" fill="#b99264"/>
+  <path d="M200 500c10-45 40-95 100-95s90 50 100 95" fill="none" stroke="#8a6642" stroke-width="16" stroke-linecap="round"/>
+  <path d="M165 530h270M155 560h290M160 590h280" stroke="#8a6642" stroke-width="10" stroke-linecap="round" opacity="0.55"/>
+  <text x="300" y="100" text-anchor="middle" font-family="Georgia, serif" font-size="34" fill="#3f5a3d">CURATED</text>
+  <text x="300" y="136" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#3f5a3d">BASKET</text>
+</svg>

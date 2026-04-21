@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" role="img" aria-labelledby="t d">
+  <title id="t">Handloom Shawl Mockup</title>
+  <desc id="d">Dummy product image for storefront preview.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f0ebfb"/>
+      <stop offset="100%" stop-color="#ddd3f7"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#bg)"/>
+  <rect x="170" y="180" width="260" height="430" rx="18" fill="#6f59a5"/>
+  <path d="M170 260h260M170 340h260M170 420h260M170 500h260" stroke="#8f78c4" stroke-width="6" opacity="0.7"/>
+  <path d="M185 610v72M210 610v72M235 610v72M260 610v72M285 610v72M310 610v72M335 610v72M360 610v72M385 610v72M410 610v72" stroke="#5b4688" stroke-width="6" stroke-linecap="round"/>
+  <text x="300" y="92" text-anchor="middle" font-family="Georgia, serif" font-size="34" fill="#4d3a74">CURATED</text>
+  <text x="300" y="128" text-anchor="middle" font-family="Georgia, serif" font-size="30" fill="#4d3a74">SHAWL</text>
+</svg>
